@@ -1,12 +1,14 @@
 from flask import Flask, render_template, redirect, url_for
+from settings import secret_key
 
 # found this online https://exploreflask.com/forms.html
 # from .import app
-from .forms import WineForm, ScotchForm
+from forms import WineForm, ScotchForm
 
 
 # set variable name app to shorten flask name
 app = Flask(__name__)
+app.secret_key = secret_key
 
 
 # Home Page of App. Describe what app about and links to tasting forms
@@ -19,6 +21,7 @@ def home_page():
 @app.route('/wine')
 def wine_page():
     form = WineForm()
+    # print form.name1
     return render_template('wine.html', form=form)
 
 
